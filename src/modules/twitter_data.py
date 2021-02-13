@@ -70,7 +70,7 @@ class TwitterData:
             for status in tweets_by_day[day]:
                 status = _get_status_row(status)
 
-                if query not in status[0].lower():
+                if query not in status[1].lower():
                     continue
 
                 csv_writer.add_row(status)
