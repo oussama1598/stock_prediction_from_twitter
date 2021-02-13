@@ -21,7 +21,7 @@ def _get_post_row(post):
     return [
                datetime.datetime.fromtimestamp(post.created).date(),
                full_text,
-               post.upvotes
+               post.upvote_ratio
            ] + list(score.values())
 
 
