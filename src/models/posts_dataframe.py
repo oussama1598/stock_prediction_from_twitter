@@ -42,7 +42,7 @@ class TweetsDataFrame:
 
         self.dataframe['sentiment_score'] = self.dataframe['Compound Score'] * self.dataframe['Up Votes']
 
-        self.dataframe['Date'] = [str(datetime.strptime(x, '%Y-%m-%d %H:%M:%S').date()) for x in self.dataframe['Date']]
+        self.dataframe['Date'] = [str(datetime.strptime(x, '%Y-%m-%d').date()) for x in self.dataframe['Date']]
 
     def get_dataframe(self):
         return self.dataframe
