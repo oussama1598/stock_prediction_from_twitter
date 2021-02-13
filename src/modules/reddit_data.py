@@ -35,7 +35,7 @@ class RedditData:
         self.api = PushshiftAPI()
         logger.info('reddit data initialized')
 
-    def download_data(self, query, subreddit='', from_date=None, to_date=None):
+    def download_data(self, query, subreddit='', limit=10000, from_date=None, to_date=None):
         logger.info(
             f'Downloading tweets with keyword {query} from subreddit '
             f'{subreddit} from date {from_date} to date {to_date}')
@@ -47,7 +47,7 @@ class RedditData:
                 q='GME',
                 after=int(from_date.timestamp()),
                 subreddit='wallstreetbets',
-                stop_condition=lambda x: x.created > int(to_date.timestamp())
+                limit=limit
             )
         )
 

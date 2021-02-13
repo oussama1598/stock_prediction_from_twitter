@@ -5,7 +5,7 @@ import numpy as np
 import pandas
 
 
-class TweetsDataFrame:
+class PostsDataFrame:
     def __init__(self, data_dir, file_name):
         self.data_dir = data_dir
         self.file_name = file_name
