@@ -46,7 +46,7 @@ class TwitterData:
 
         tweets_by_day = {}
 
-        for status in self.search(query, count, tweet_mode='extended', until=to_date):
+        for status in self.api.user_timeline(screen_name=query, count=count, tweet_mode='extended'):
             tweet_date = status.created_at.date()
 
             if tweet_date < from_date:
