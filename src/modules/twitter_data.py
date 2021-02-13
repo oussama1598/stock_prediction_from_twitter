@@ -34,7 +34,7 @@ class TwitterData:
         self.auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         self.auth.set_access_token(access_token, access_token_secret)
 
-        self.api = tweepy.API(self.auth)
+        self.api = tweepy.API(self.auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
         logger.info('twitterData authenticated')
 

@@ -6,20 +6,20 @@ import pandas
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-from src.helpers import plotter
 from src.models.tweets_dataframe import TweetsDataFrame
 from src.models.yahoo_dataframe import YahooDataFrame
+from src.modules.twitter_data import TwitterData
 from src.modules.yahoo_data import YahooData
 
 DATA_DIR = os.getenv(os.getcwd(), 'data')
 
-# twitter_data = TwitterData(
-#     os.getenv('TWITTER_API_KEY'),
-#     os.getenv('TWITTER_API_SECRET_KEY'),
-#     os.getenv('TWITTER_ACCESS_TOKEN'),
-#     os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
-#     data_dir=os.getenv(os.getcwd(), 'data')
-# )
+twitter_data = TwitterData(
+    os.getenv('TWITTER_API_KEY'),
+    os.getenv('TWITTER_API_SECRET_KEY'),
+    os.getenv('TWITTER_ACCESS_TOKEN'),
+    os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
+    data_dir=os.getenv(os.getcwd(), 'data')
+)
 
 yahoo_data = YahooData(DATA_DIR)
 
