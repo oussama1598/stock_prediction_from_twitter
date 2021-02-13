@@ -23,7 +23,7 @@ class TweetsDataFrame:
         self.dataframe.drop_duplicates(inplace=True)
 
         # Filter tweets with 0 followers
-        self.dataframe = self.dataframe[self.dataframe['Followers'] != 0]
+        self.dataframe = self.dataframe[self.dataframe['Up Votes'] != 0]
 
         self.dataframe['positive'] = np.where(
             self.dataframe['Positive Score'] >= 0.5,
@@ -40,7 +40,7 @@ class TweetsDataFrame:
             1, 0
         )
 
-        self.dataframe['sentiment_score'] = self.dataframe['Compound Score'] * self.dataframe['Followers']
+        self.dataframe['sentiment_score'] = self.dataframe['Compound Score'] * self.dataframe['Up Votes']
 
         self.dataframe['Date'] = [str(datetime.strptime(x, '%Y-%m-%d %H:%M:%S').date()) for x in self.dataframe['Date']]
 

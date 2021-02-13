@@ -12,6 +12,7 @@ nltk = "*"
 pandas = "*"
 yfinance = "*"
 sklearn = "*"
+"pushshift.py" = "*"
 
 [dev-packages]
 
