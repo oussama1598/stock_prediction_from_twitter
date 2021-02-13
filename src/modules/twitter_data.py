@@ -41,12 +41,12 @@ class TwitterData:
     def search(self, query, count, **kwargs):
         return tweepy.Cursor(self.api.search, q=query, count=200, lang='en', **kwargs).items(count)
 
-    def download_data(self, query, count, from_date, to_date):
+    def download_data(self, user, query, count, from_date, to_date):
         logger.info(f'Downloading tweets with keyword {query} from date {from_date} to date {to_date}')
 
         tweets_by_day = {}
 
-        for status in self.api.user_timeline(screen_name=query, count=count, tweet_mode='extended'):
+        for status in self.api.user_timeline(screen_name=user, count=count, tweet_mode='extended'):
             tweet_date = status.created_at.date()
 
             if tweet_date < from_date:
@@ -66,9 +66,11 @@ class TwitterData:
             )
 
             csv_writer.add_row(self.csv_header)
-            csv_writer.add_rows(
-                [
-                    _get_status_row(status)
-                    for status in tweets_by_day[day]
-                ]
-            )
+
+            for status in tweets_by_day[day]:
+                status = _get_status_row(status)
+
+                if query not in status[0].lower():
+                    continue
+
+                csv_writer.add_row(status)
