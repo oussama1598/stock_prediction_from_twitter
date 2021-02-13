@@ -54,15 +54,10 @@ class RedditData:
         for post in result:
             post_date = datetime.datetime.fromtimestamp(post.created).date()
 
-            if post_date < from_date:
-                continue
-
             if post_date not in posts_by_day:
                 posts_by_day[post_date] = []
 
             posts_by_day[post_date].append(post)
-
-        print(posts_by_day)
 
         for day in posts_by_day:
             logger.info(f'Saving posts_{query}_{day}.csv')
